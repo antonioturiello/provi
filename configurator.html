@@ -1,0 +1,407 @@
+<!DOCTYPE html><html oncontextmenu = 'return false' onselectstart = 'return false' ondragstart = 'return false'>
+
+<title>Nome sito web</title>
+
+<meta content='width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=0' name='viewport' />
+
+<meta name = 'Website' content = 'Nome sito web'>
+<meta name = 'Link (Website)' content = 'Link sito web'>
+<meta name = 'Rights' content = 'This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License'>
+<meta name = 'Link (Rights)' content = 'http://creativecommons.org/licenses/by-nc-nd/3.0/'>
+<meta name = 'Author' content = 'Antonio Turiello Design'>
+<meta name = 'Link (Author)' content = 'http://antonioturiello.blogspot.com/p/designer.html'>
+<meta name = 'Contact' content = 'Please contact me if you want to use it for commercial purposes'>
+<meta name = 'Link (Contact)' content = 'antonioturiello.blog@gmail.com'>
+
+<style type = 'text/css'>
+
+html{
+background:#000000;}
+
+#loadingContainer{
+position:fixed;
+top:50%;
+left:50%;
+margin-top:-126px;
+margin-left:-126px;
+text-align: center;}
+
+#txt{
+position: fixed;
+height: 100%;
+width: 100%;
+margin-top:-8px;
+margin-left:-8px;
+font-size: 20px;
+color: #E6E6E6;  
+display: flex;
+justify-content: center; /* align horizontal */
+align-items: center; /* align vertical */}
+
+#imageContainer{
+position:fixed;
+top:50%;
+left:50%;
+margin-top:-200px;
+margin-left:-200px;}
+
+#PRESELECT{
+position:fixed;
+top:0%;
+left:0%;
+margin-top:+60px;
+margin-left:+60px;}
+
+#DOWNLOAD{
+position:fixed;
+top:0%;
+left:100%;
+margin-top:+60px;
+margin-left:-215px;}
+
+#INCREASE{
+position:fixed;
+top:100%;
+left:100%;
+margin-top:-80px;
+margin-left:-205px;}
+
+#DECREASE{
+position:fixed;
+top:100%;
+left:0%;
+margin-top:-80px;
+margin-left:+60px;}
+
+#UP{
+position:fixed;
+top:0%;
+left:50%;
+margin-top:+60px;
+margin-left:-17px;}
+
+#DOWN{
+position:fixed;
+top:100%;
+left:50%;
+margin-top:-80px;
+margin-left:-40px;}
+
+#RIGHT{
+position:fixed;
+top:50%;
+left:100%;
+margin-top:-10px;
+margin-left:-145px;}
+
+#LEFT{
+position:fixed;
+top:50%;
+left:0%;
+margin-top:-10px;
+margin-left:+60px;}
+
+</style>
+
+<div id='loadingContainer'>
+<img src='' id='loading'>
+</div>
+
+<div id='txt'>
+</div>
+
+<div id='imageContainer'>
+<img src='' id='image'>
+</div>
+
+<div id='PRESELECT'>
+<a href='javascript:PRESELECT()' onclick='V()'>
+<img src='PRESELECT.png'></a>
+</div>
+
+<div id='DOWNLOAD'>
+<a href='javascript:DOWNLOAD()' onclick='V()'>
+<img src='DOWNLOAD.png'></a>
+</div>
+
+<div id='INCREASE'>
+<a href='javascript:INCREASE()' onclick='V()'>
+<img src='INCREASE.png'></a>
+</div>
+
+<div id="DECREASE">
+<a href='javascript:DECREASE()' onclick='V()'>
+<img src="DECREASE.png"></a>
+</div>
+
+<div id="UP">
+<a href='javascript:UP()' onclick='V()'>
+<img src="UP.png"></a>
+</div>
+
+<div id="DOWN">
+<a href='javascript:DOWN()' onclick='V()'>
+<img src="DOWN.png"></a>
+</div>
+
+<div id="RIGHT">
+<a href='javascript:RIGHT()' onclick='V()'>
+<img src="RIGHT.png"></a>
+</div>
+
+<div id="LEFT">
+<a href='javascript:LEFT()' onclick='V()'>
+<img src="LEFT.png"></a>
+</div>
+
+</script><script type='text/javascript'>
+
+/*
+*
+* Nome sito web
+*
+* Link sito web
+*
+* This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
+*
+* http://creativecommons.org/licenses/by-nc-nd/3.0/
+*
+* Antonio Turiello Design
+*
+* http://antonioturiello.blogspot.com/p/designer.html
+*
+* Please contact me if you want to use it for commercial purposes
+*
+* antonioturiello.blog@gmail.com
+*
+*/
+
+document.getElementById('loading').src= 'progress.gif';
+
+function preloadImages(srcs, imgs, callback){
+var img;
+var remaining = srcs.length;
+for (var i = 0; i < srcs.length; i++){
+img = new Image();
+img.onload = function(){
+--remaining;
+document.getElementById('txt').textContent = Math.round((remaining - 448) / (0 - 448) * (100 - 1) + 1) + '%';
+if (remaining <= 0){
+callback();
+}
+};
+img.src = srcs[i];
+imgs.push(img);
+}
+}
+var a = 1;
+var b = 1;
+var c = 1;
+var count = 0;
+var images = new Array();
+var immagini = [];
+var ai = 1;
+var bi = 1;
+var ci = 1;
+for (ai=1; ai<=4; ai++){
+for (bi=1; bi<=4; bi++){
+for (ci=1; ci<=28; ci++){
+images[count] = 'data/' + 'A' + ai + '_B' + bi + '_C' + ci + '.jpg';
+count = count + 1;
+};
+};
+};
+var test = 0;
+var my = function(){
+var remove = document.getElementById('loading');
+remove.parentNode.removeChild(remove);
+document.getElementById('txt').textContent = ' ';
+document.getElementById('image').src= 'data/' + 'A' + a + '_B' + b + '_C' + c + '.jpg';
+test=1;
+};
+preloadImages(images, immagini, my);
+
+var V = function(){
+navigator.vibrate(100);
+};
+
+var RANDOM = function(){
+
+var cf = Math.round(1 + Math.random() * (28 - 1));
+
+var animation = setInterval(function(){ 
+
+if(cf-c>0){
+test=0;
+c =c + 1;
+document.getElementById('image').src= 'data/' + 'A' + a + '_B' + b + '_C' + c + '.jpg';
+}
+if(cf-c<0){
+test=0;
+c =c - 1;
+document.getElementById('image').src= 'data/' + 'A' + a + '_B' + b + '_C' + c + '.jpg';
+}
+if(c==cf){
+test=1;
+clearInterval(animation);	
+}
+
+}, 100);
+
+};
+
+var DOWNLOAD = function(){
+
+if(test==1){
+
+newWindow = window.open('', '_self');
+newWindow.document.write('<!DOCTYPE html>');
+newWindow.document.write('<html oncontextmenu = "return false" onselectstart = "return false" ondragstart = "return false"> ');
+//newWindow.document.title = 'FTS' + c + '_FRS' + d + '_TRS' + e;
+newWindow.document.write('<title>Nome sito web</title>');
+newWindow.document.write('<style type = "text/css"> html{background:#000000;} </style>');
+newWindow.document.write('<style type = "text/css"> #vistaSuperiore{position:fixed; top:50%; left:50%; margin-top:-215px; margin-left:-215px;} </style>');
+newWindow.document.write('<div id="vistaSuperiore"><img src="" id="Superiore" width="215" height="215"></div>');
+newWindow.document.getElementById('Superiore').src = 'data/' + 'A1_B4' + '_C' + c + '.jpg';
+newWindow.document.write('<style type = "text/css"> #vistaProspettica{position:fixed; top:50%; left:50%; margin-top:-215px; margin-left:-0px;} </style>');
+newWindow.document.write('<div id="vistaProspettica"><img src="" id="Prospettica" width="215" height="215"></div>');
+newWindow.document.getElementById('Prospettica').src = 'data/' + 'A5_B2' + '_C' + c + '.jpg';
+newWindow.document.write('<style type = "text/css"> #vistaFrontale{position:fixed; top:50%; left:50%; margin-top:-0px; margin-left:-215px;} </style>');
+newWindow.document.write('<div id="vistaFrontale"><img src="" id="Frontale" width="215" height="215"></div>');
+newWindow.document.getElementById('Frontale').src = 'data/' + 'A1_B1' + '_C' + c + '.jpg';
+newWindow.document.write('<style type = "text/css"> #vistaDestra{position:fixed; top:50%; left:50%; margin-top:-0px; margin-left:-0px;} </style>');
+newWindow.document.write('<div id="vistaDestra"><img src="" id="Destra" width="215" height="215"></div>');
+newWindow.document.getElementById('Destra').src = 'data/' + 'A4_B1' + '_C' + c + '.jpg';
+newWindow.document.write('<style type = "text/css"> #clickCC{position:fixed; top:0%; left:0%; margin-top:+60px; margin-left:+60px;} </style>');
+newWindow.document.write('<div id="clickCC"><a href="#" id="CC" target="_blank"><img src="CC.png"></a></div>');
+newWindow.document.getElementById('CC').href = 'http://creativecommons.org/licenses/by-nc-nd/3.0/';
+newWindow.document.write('<style type = "text/css"> #clickFORM{position:fixed; top:0%; left:100%; margin-top:+60px; margin-left:-136px;} </style>');
+newWindow.document.write('<div id="clickFORM"><a href="#" id="FORM"><img src="FORM.png"></a></div>');
+newWindow.document.getElementById('FORM').href = 'GENERATOR.html';
+newWindow.document.write('<style type = "text/css"> #clickHOME{position:fixed; top:100%; left:0%; margin-top:-80px; margin-left:+60px;} </style>');
+newWindow.document.write('<div id="clickHOME"><a href="#" id="HOME"><img src="HOME.png"></a></div>');
+newWindow.document.getElementById('HOME').href = 'HOME.html';
+newWindow.document.write('<style type = "text/css"> #clickDOWNLOAD{position:fixed; top:100%; left:100%; margin-top:-80px; margin-left:-215px;} </style>');
+newWindow.document.write('<div id="clickDOWNLOAD"><a href="#" id="DOWNLOAD" target="_blank"><img src="DOWNLOAD.png"></a></div>');
+newWindow.document.getElementById('DOWNLOAD').href = 'https://dl.dropboxusercontent.com/u/216565649/ORGANICUBE/ORGANICUBE_FTS' + c + '_FRS' + d + '_TRS' + e + '_ANTONIO_TURIELLO_DESIGN.zip';
+
+};
+
+};
+
+var PRESELECT = function(){
+
+if(test==1){
+
+RANDOM();
+
+};
+
+};
+
+var INCREASE = function(){
+
+if(test==1){
+
+if(c<28){
+c = c + 1;
+document.getElementById('image').src= 'data/' + 'A' + a + '_B' + b + '_C' + c + '.jpg';
+};
+
+};
+
+};
+
+var DECREASE = function(){
+
+if(test==1){
+
+if(c>1){
+c = c - 1;
+document.getElementById('image').src= 'data/' + 'A' + a + '_B' + b + '_C' + c + '.jpg';
+};
+
+};
+
+};
+
+var UP = function(){
+
+if(test==1){
+
+if(b==4){
+b = 0;
+};
+
+b = b + 1
+document.getElementById('image').src= 'data/' + 'A' + a + '_B' + b + '_C' + c + '.jpg';
+
+};
+
+};
+
+var DOWN = function(){
+
+if(test==1){
+
+if(b==1){
+b = 5;
+};
+
+b = b - 1
+document.getElementById('image').src= 'data/' + 'A' + a + '_B' + b + '_C' + c + '.jpg';
+
+};
+
+};
+
+var RIGHT = function(){
+
+if(test==1){
+
+if(a==4){
+a = 0;
+};
+
+a = a + 1
+document.getElementById('image').src= 'data/' + 'A' + a + '_B' + b + '_C' + c + '.jpg';
+
+};
+
+};
+
+var LEFT = function(){
+
+if(test==1){
+
+if(a==1){
+a = 5;
+};
+
+a = a - 1
+document.getElementById('image').src= 'data/' + 'A' + a + '_B' + b + '_C' + c + '.jpg';
+
+};
+
+};
+
+//var step = 1;
+
+//var update = setInterval(function(){ 
+
+//if(test==1){
+
+//if(c==1){
+//step = 1;
+//}
+//if(c==28){
+//step = -1;
+//}
+//c = c + step;
+//document.getElementById('image').src= 'data/' + 'A' + a + '_B' + b + '_C' + c + '.jpg';
+
+//}
+
+//}, 100);
+
+</script><canvas>YOUR BROWSER DOESN'T SUPPORT THE CANVAS</canvas>
